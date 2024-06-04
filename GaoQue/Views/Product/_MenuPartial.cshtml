@@ -1,0 +1,42 @@
+﻿@model GaoQue.ViewModels.ProductViewModel
+@{
+    int numOfQuantity = 1;
+}
+
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top px-4 px-lg-5">
+    <a href="trang-chu" class="navbar-brand d-flex align-items-center">
+        <h1 class="m-0">Gao Quê</h1>
+    </a>
+    <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0 active">
+            @if (Model.Menus != null && Model.Menus.Any())
+            {
+                @foreach (var item in Model.Menus)
+                {
+                    <a href="@item.Link" class="nav-item nav-link">@item.Name</a>
+                }
+            }
+            @await Html.PartialAsync("_LoginPartial")
+        </div>
+
+        <form asp-action="SearchProducts" asp-controller="Product" method="get">
+            <div class="border-start ps-4 d-none d-lg-block">
+                <div class="input-group input-group-sm">
+                    <input type="text" id="searchInput" name="query" class="form-control me-2" placeholder="Nhập thông tin tìm kiếm" aria-label="Nhập thông tin tìm kiếm" aria-describedby="basic-addon2">
+                    <button type="submit" id="submitButton" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+        <div class="border-start ps-4 d-none d-lg-block">
+            <form method="post" asp-controller="Cart" asp-action="Index">
+                <button type="submit" class="btn btn-outline-dark">
+                    <i class="bi-cart-fill me-1"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+<hr />

@@ -1,0 +1,90 @@
+﻿@model GaoQue.Models.Order
+
+@{
+    ViewData["Title"] = "Order Details";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Detail Order</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "OrderManager")">Order Manager</a></li>
+                <li class="breadcrumb-item active">Order</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mt-4">Thông tin đơn hàng</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-3">Order ID</dt>
+                <dd class="col-sm-9">@Model.Id</dd>
+
+                <dt class="col-sm-3">Customer</dt>
+                <dd class="col-sm-9">@Model.ApplicationUser.FullName</dd>
+
+                <dt class="col-sm-3">Order Date</dt>
+                <dd class="col-sm-9">@Model.OrderDate.ToString("dd/MM/yyyy")</dd>
+
+                <dt class="col-sm-3">Total Price</dt>
+                <dd class="col-sm-9">@Model.TotalPrice</dd>
+
+                <dt class="col-sm-3">Shipping Address</dt>
+                <dd class="col-sm-9">@Model.ShippingAddress</dd>
+
+                <dt class="col-sm-3">Notes</dt>
+                <dd class="col-sm-9">@Model.Notes</dd>
+
+                <dt class="col-sm-3">Status</dt>
+                <dd class="col-sm-9">
+                    <td>
+                        @if (Model.Status == 1)
+                        {
+                            <span class="badge badge-warning">Chờ thanh toán</span>
+                        }
+                        else
+                        {
+                            <span class="badge badge-success">Đã thanh toán</span>
+                        }
+                    </td>
+                </dd>
+
+                <dt class="col-sm-3">Payment Method</dt>
+                <dd class="col-sm-9">@Model.PaymentMethod</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mb-4">Sản phẩm được mua</h4>
+            <hr />
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng cộng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price</td>
+                            <td>@(item.Quantity * item.Price)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <a asp-action="Index" class="btn btn-secondary mt-3">Quay lại danh sách</a>
+        </div>
+    </div>
+</div>

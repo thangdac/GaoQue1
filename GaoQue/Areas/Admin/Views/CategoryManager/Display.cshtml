@@ -1,0 +1,42 @@
+﻿@model GaoQue.Models.Category
+
+@{
+    ViewData["Title"] = "Display";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Detail Category</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Category Manager</a></li>
+                <li class="breadcrumb-item active">Category</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mt-4">Thông tin Danh Mục</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">Name</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-2">Description</dt>
+                <dd class="col-sm-10">@Html.DisplayFor(model => model.Description)</dd>
+
+                <dt class="col-sm-2">Image</dt>
+                <dd class="col-sm-10">
+                    <img src="~/img/@Model.ImageUrl" style="width: 100px; height: auto;" class="img-fluid" alt="Category Image">
+                </dd>
+            </dl>
+            <div>
+                <a class="btn btn-secondary" asp-action="Update" asp-route-id="@Model.Id">Đi Tới Trang Chỉnh Sửa </a>|
+                <a href="@Url.Action("Index")" class="btn btn-primary">Quay lại danh sách</a>
+            </div>
+        </div>
+    </div>
+</div>

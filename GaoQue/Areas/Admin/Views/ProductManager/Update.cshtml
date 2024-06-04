@@ -1,0 +1,79 @@
+﻿@model GaoQue.Models.Product
+
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Update Product</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Product Manager</a></li>
+                <li class="breadcrumb-item active">Product</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Chỉnh sửa sản phẩm</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Update" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Tên sản phẩm</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label">Giá</label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label">Mô tả</label>
+                            <input asp-for="Description" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ImageUrl" class="control-label">Đường dẫn hình ảnh</label>
+                            <input type="file" asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Order" class="control-label">Thứ tự</label>
+                            <input asp-for="Order" class="form-control" />
+                            <span asp-validation-for="Order" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Hide" class="control-label">Ẩn</label>
+                            <input asp-for="Hide" class="form-control" />
+                            <span asp-validation-for="Hide" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CategoryId" class="control-label">ID danh mục</label>
+                            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories"></select>
+                            <span asp-validation-for="CategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Lưu" class="btn btn-secondary" />|
+                            <a href="@Url.Action("Index")" class="btn btn-primary">Quay lại danh sách</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

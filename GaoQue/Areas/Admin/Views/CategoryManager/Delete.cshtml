@@ -1,0 +1,56 @@
+﻿@model GaoQue.Models.Category
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Delete Category</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Category Manager</a></li>
+                <li class="breadcrumb-item active">Category</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h3>Bạn có chắc muốn xóa danh mục này không?</h3>
+            <div>
+                <h4>Danh Mục</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        <strong>Tên:</strong>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <strong>Mô tả:</strong>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <strong>URL ảnh:</strong>
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="~/img/@Model.ImageUrl" alt="Ảnh sản phẩm" style="max-width: 500px; height: auto;">
+                    </dd>
+                </dl>
+
+                <form asp-action="Delete">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                    <a asp-action="Index" class="btn btn-primary">Quay Lại Danh Sách</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

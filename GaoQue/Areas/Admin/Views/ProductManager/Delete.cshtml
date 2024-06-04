@@ -1,0 +1,85 @@
+﻿@model GaoQue.Models.Product
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Delete Product</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Product Manager</a></li>
+                <li class="breadcrumb-item active">Product</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mt-4">Bạn có thực sự muốn xóa sản phẩm này không?</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            <strong>Tên:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>Giá:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Price)
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>Mô tả:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Description)
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>URL ảnh:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            <img src="~/img/@Model.ImageUrl" alt="Ảnh sản phẩm" style="max-width: 500px; height: auto;">
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>Thứ tự:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Order)
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>Ẩn:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Hide)
+                        </dd>
+                        <dt class="col-sm-4">
+                            <strong>Danh mục:</strong>
+                        </dt>
+                        <dd class="col-sm-8">
+                            @Html.DisplayFor(model => model.Category.Name)
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form asp-action="DeleteConfirmed" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <p>bạn có chắc muốn xóa sản phầm @Model.Name? này không</p>
+                        <button type="submit" class="btn btn-danger">Xóa</button>
+                        <a href="@Url.Action("Index")" class="btn btn-primary">Quay lại danh sách</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

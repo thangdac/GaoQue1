@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Navbar Start -->
+@await Html.PartialAsync("_MenuPartial")
+<!-- Navbar End -->
+
+<!-- Carousel Start -->
+@await Html.PartialAsync("_SliderPartial")
+<!-- Carousel End -->
+
+<!-- Contact Start -->
+@await Html.PartialAsync("_ContactPartial")
+<!-- Contact End -->
+
+<!-- category start -->
+@await Html.PartialAsync("_CategoryPartial")
+
+<!-- category end -->
+
+<!-- Product start -->
+@await Html.PartialAsync("_ProductPartial")
+<!-- Product end -->
+
+<!-- Banner Start -->
+@await Html.PartialAsync("_BannerPartial")
+<!-- Banner End -->
+
+
+<a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>

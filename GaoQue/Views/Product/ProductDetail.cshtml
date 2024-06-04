@@ -1,0 +1,49 @@
+﻿@model GaoQue.ViewModels.ProductViewModel
+
+@{
+    ViewData["Title"] = "Chi Tiết Sản Phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int numOfQuantity = 1;
+}
+
+<!-- Navbar Start -->
+@await Html.PartialAsync("_MenuPartial")
+<!-- Navbar End -->
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="~/img/@Model.Product.ImageUrl" class="img-fluid" alt="Product Image">
+        </div>
+        <div class="col-lg-6">
+            <h2>@Model.Product.Name</h2>
+            <p><strong>@string.Format("{0:N0}", Model.Product.Price) VND</strong></p>
+            <p><strong>Loại Sản Phẩm:</strong> @Model.Product.Category.Name</p>
+            @if (Model.Product.Order == 0)
+            {
+                <p><strong>Tình Trạng : </strong> Hết Hàng</p>
+            }
+            else
+            {
+                <p><strong>Tình Trạng : </strong> Còn Hàng</p>
+            }
+            <form method="post" class="btn-AddToCart" data-id="@Model.Product.Id">
+                <button type="submit" class="btn btn-outline-dark">
+                    <i class="bi-cart-fill me-1"></i>
+                    <strong>thêm vào goi hàng</strong>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-lg-12">
+            <h5>Mô tả chi tiết:</h5>
+            <p>@Model.Product.Description</p>
+        </div>
+    </div>
+</div>
+
+<!-- category start -->
+@await Html.PartialAsync("_InformationPartial")
+<!-- category end -->

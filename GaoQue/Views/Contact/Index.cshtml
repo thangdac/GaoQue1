@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Liên Hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Navbar Start -->
+@await Html.PartialAsync("_MenuPartial")
+<!-- Navbar End -->
+
+<!-- Contact Section Start -->
+<div class="container-xxl py-5 bg-light">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Liên Hệ Với Chúng Tôi</h1>
+            <p>Chúng tôi luôn sẵn sàng lắng nghe và hỗ trợ bạn. Hãy liên hệ với chúng tôi để biết thêm thông tin về sản phẩm và dịch vụ của chúng tôi.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="bg-white rounded shadow p-5">
+                    <h5 class="mb-4">Thông Tin Liên Hệ</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>216 Đình Phong Phú, Quận 9, TPHCM, Việt Nam</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+098 345 XXXX</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@gaoque.com</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-primary rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="bg-white rounded shadow p-5">
+                    <h5 class="mb-4">Gửi Tin Nhắn Cho Chúng Tôi</h5>
+                    <form>
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Họ và Tên" required="required">
+                            </div>
+                            <div class="col-12">
+                                <input type="email" class="form-control" placeholder="Email" required="required">
+                            </div>
+                            <div class="col-12">
+                                <input type="text" class="form-control" placeholder="Chủ Đề" required="required">
+                            </div>
+                            <div class="col-12">
+                                <textarea class="form-control" rows="5" placeholder="Tin Nhắn" required="required"></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Gửi Tin Nhắn</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact Section End -->

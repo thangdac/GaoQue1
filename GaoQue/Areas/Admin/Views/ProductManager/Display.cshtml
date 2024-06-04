@@ -1,0 +1,56 @@
+﻿@model GaoQue.Models.Product
+
+@{
+    ViewData["Title"] = "Display";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Product Detail</a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Product Manager</a></li>
+                <li class="breadcrumb-item active">Product</li>
+            </ol>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="mt-4">Thông tin sản phẩm</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-6">
+                    <dl class="row">
+                        <dt class="col-sm-4"><h6>Tên sản phẩm:</h6></dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Name)</dd>
+
+                        <dt class="col-sm-4"><h6>Giá:</h6></dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Price)</dd>
+
+                        <dt class="col-sm-4"><h6>Mô tả:</h6></dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Description)</dd>
+
+                        <dt class="col-sm-4"><h6>Ảnh sản phẩm:</h6></dt>
+                        <dd class="col-sm-8">
+                            <img src="~/img/@Model.ImageUrl" alt="Ảnh sản phẩm" style="max-width: 500px; height: auto;">
+                        </dd>
+
+                        <dt class="col-sm-4"><h6>Danh mục:</h6></dt>
+                        <dd class="col-sm-8">@Html.DisplayFor(model => model.Category.Name)</dd>
+                    </dl>
+                </div>
+            </div>
+                <div>
+                <a href="@Url.Action("Update", new { id = Model.Id })" class="btn btn-secondary">Đi Đến Trang Chỉnh sửa </a>|
+                <a href="@Url.Action("Index")" class="btn btn-primary">Quay lại danh sách</a>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+

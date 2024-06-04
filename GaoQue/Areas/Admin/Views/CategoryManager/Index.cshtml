@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GaoQue.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create", "CategoryManager")">Tạo Mới</a>
+    </p>
+
+    <div class="card">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Tên</th>
+                            <th>Mô tả</th>
+                            <th>Hình ảnh</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr onclick="window.location='@Url.Action("Display", new { id = item.Id })';">
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td><img src="~/img/@item.ImageUrl" alt="Category Image" style="width: 50px; height: auto;"></td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("Update", "CategoryManager", new { id = item.Id })">Sửa</a>
+                                    <a class="btn btn-sm btn-info" href="@Url.Action("Display", "CategoryManager", new { id = item.Id })">Chi tiết</a>
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "CategoryManager", new { id = item.Id })">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

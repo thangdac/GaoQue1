@@ -1,0 +1,37 @@
+﻿@model GaoQue.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Giới thiệu";
+}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto pb-4 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="section-title bg-white text-center text-primary px-3">Gạo Việt Nam</p>
+            <h1 class="mb-5"></h1>
+        </div>
+        <div class="container-fluid banner my-5 py-5" data-parallax="scroll" data-image-src="img/banner.jpg">
+            <div class="container py-5">
+                <div class="row g-5">
+                    @foreach (var item in Model.Banners)
+                    {
+                    <div class="col-lg-6 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="row g-4 align-items-center">
+                            <div class="col-sm-4">
+                                <img class="img-fluid rounded" src="img/@item.Imageurl" alt="">
+                            </div>
+                            <div class="col-sm-8">
+                                <h2 class="text-white mb-3">@item.Name</h2>
+                                <p class="text-white mb-4">
+                                @item.Description    
+                                </p>
+                                <a class="btn btn-secondary rounded-pill py-2 px-4" href="">Dọc Thêm</a>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

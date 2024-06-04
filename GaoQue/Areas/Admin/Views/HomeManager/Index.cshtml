@@ -1,0 +1,157 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header border-0">
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Biểu đồ hiển Số Tiền Thu Được Trong Tháng</h3>
+                    <a href="@Url.Action("Index", "OrderManager")">Xem Đơn Hàng</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="d-flex">
+                    <p class="d-flex flex-column" data-id="total-amount">
+                        <span class="text-bold text-lg"></span>
+                        <span>Tổng Tiền trong biểu đồ</span>
+                    </p>
+                </div>
+                <!-- /.d-flex -->
+                <div class="position-relative mb-4">
+                    <canvas id="sales-chart" width="400" height="200"></canvas>
+                </div>
+
+
+                <div class="d-flex flex-row justify-content-end">
+                    <span class="mr-2">
+                        <i class="fas fa-square text-primary"></i> Số tiền
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@section scripts {
+    <script>
+        $(function () {
+            'use strict';
+
+            var ticksStyle = {
+                color: '#000',
+                weight: 'bold'
+            };
+
+            var mode = 'index';
+            var intersect = true;
+
+            var $salesChart = $('#sales-chart');
+            var salesChart = new Chart($salesChart, {
+                type: 'bar',
+                data: {
+                    labels: [], // Ban đầu để trống, sẽ được cập nhật bởi dữ liệu AJAX
+                    datasets: [
+                        {
+                            label: 'Sales',
+                            backgroundColor: '#007bff',
+                            borderColor: '#007bff',
+                            data: [] // Ban đầu để trống, sẽ được cập nhật bởi dữ liệu AJAX
+                        }
+                    ]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            mode: mode,
+                            intersect: intersect
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: {
+                                display: true,
+                                lineWidth: 4,
+                                color: 'rgba(0, 0, 0, .2)',
+                                zeroLineColor: 'transparent'
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                callback: function (value) {
+                                    if (value >= 1000) {
+                                        value /= 1000;
+                                        value += 'k';
+                                    }
+                                    return '' + value;
+                                },
+                                color: '#495057',
+                                weight: 'bold'
+                            }
+                        },
+                        x: {
+                            display: true,
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#495057',
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Thực hiện yêu cầu AJAX để lấy dữ liệu từ action method
+            $.ajax({
+                url: '/Admin/HomeManager/GetOrderDataForChart',
+                type: 'GET',
+                success: function (response) {
+                    console.log("Dữ liệu trả về từ server:", response);
+
+                    // Kiểm tra xem dữ liệu có đúng định dạng không
+                    if (response.labels && response.data && Array.isArray(response.labels) && Array.isArray(response.data)) {
+                        console.log("Dữ liệu hợp lệ");
+
+                        // Cập nhật dữ liệu của biểu đồ
+                        salesChart.data.labels = response.labels;
+                        salesChart.data.datasets[0].data = response.data;
+
+                        // Tính tổng số tiền từ dữ liệu trong biểu đồ
+                        var totalAmount = response.data.reduce((total, amount) => total + amount, 0);
+
+                        // Hiển thị tổng số tiền tính được trên giao diện
+                        var totalAmountElement = $('[data-id="total-amount"]');
+                        totalAmountElement.find('.text-lg').text(totalAmount.toLocaleString() + ' VND');
+
+                        // Cập nhật biểu đồ
+                        salesChart.update();
+                    } else {
+                        console.log("Dữ liệu trả về không hợp lệ");
+                    }
+                },
+                error: function (error) {
+                    console.log("Lỗi khi lấy dữ liệu từ server:", error);
+                }
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@(ViewData["Title"] ?? "Gạo Quê")</title>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link href="~/img/icon.png" rel="icon">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="~/css/style.css" rel="stylesheet">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    
+    @RenderBody()
+    <!-- layout  -->
+    <div class="container-xxl py-5 px-0">
+        <div class="row g-0">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-5.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-5.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-1.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-1.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-2.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-6.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-6.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-7.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-7.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-3.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-3.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="row g-0">
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-4.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-4.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a class="d-block" href="img/gallery-8.jpg" data-lightbox="gallery">
+                            <img class="img-fluid" src="img/gallery-8.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- layout end -->
+    <!-- Footer Start -->
+    <footer class="container-fluid bg-dark text-white">
+        <div class="container py-5">
+            <div class="row row-cols-1 row-cols-lg-3 g-5">
+                <div class="col">
+                    <h5 class="mb-4">Our Office</h5>
+                    <p><i class="fa fa-map-marker-alt me-3"></i>đường 123, TPHCM, Việt Nam</p>
+                    <p><i class="fa fa-phone-alt me-3"></i>+098 345 XXXX</p>
+                    <p><i class="fa fa-envelope me-3"></i>info@Gmail.com</p>
+                    <div class="d-flex pt-3">
+                        <a class="btn btn-square btn-secondary rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-secondary rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-secondary rounded-circle me-2" href="#"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-secondary rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col">
+                    <h5 class="mb-4">Business Hours</h5>
+                    <p>Thứ 2 - Thứ 6</p>
+                    <p>09:00 am - 07:00 pm</p>
+                    <p>Thứ 7</p>
+                    <p>09:00 am - 12:00 pm</p>
+                    <p>Chủ Nhật</p>
+                    <p>Closed</p>
+                </div>
+                <div class="col">
+                    <h5 class="mb-4">Newsletter</h5>
+                    <p>Mời bạn nhập email để có thể liên hệ với chúng tôi</p>
+                    <div class="position-relative w-100 card">
+                        <input class="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-secondary py-2 position-absolute top-0 end-0 mt-2 me-2">Đăng Kí</button>
+                    </div>
+                    <div class="map card">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4206985418705!2d106.78253487570396!3d10.855572157727538!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175276e7ea103df%3A0xb6cf10bb7d719327!2zSFVURUNIIC0gxJDhuqFpIGjhu41jIEPDtG5nIG5naOG7hyBUUC5IQ00gKFRodSBEdWMgQ2FtcHVzKQ!5e0!3m2!1svi!2s!4v1710172843840!5m2!1svi!2s"
+                                width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer end -->
+    @RenderSection("Scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/wow/wow.min.js"></script>
+    <script src="~/lib/easing/easing.min.js"></script>
+    <script src="~/lib/waypoints/waypoints.min.js"></script>
+    <script src="~/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/lib/counterup/counterup.min.js"></script>
+    <script src="~/lib/parallax/parallax.min.js"></script>
+    <script src="~/lib/lightbox/js/lightbox.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/js/Cart.js"></script>
+    <script src="~/js/jsCart.js"></script>
+</body>
+</html>

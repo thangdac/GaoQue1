@@ -1,0 +1,68 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+        <img src="~/Admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-item menu-open">
+                    <a href= "@Url.Action("Index", "HomeManager")" class="nav-link active">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Danh Mục</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" @Url.Action("Index", "OrderManager")" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Quản Lí đơn Hàng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href=" @Url.Action("Index", "RolesManager")" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Quản lí Phân Quyền
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "UsersManager")" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Người Dùng
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "CategoryManager")" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Danh Mục</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="@Url.Action("Index", "ProductManager")" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Sản phẩm</p>
+                    </a>
+
+                </li>
+                <li class="nav-item">
+                    <a href="/news" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Cấu Hình Hệ Thống
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>>

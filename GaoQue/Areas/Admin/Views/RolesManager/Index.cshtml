@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GaoQue.DataAccess.ApplicationRole>
+
+@{
+    ViewData["Title"] = "Roles Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Phân Quyền</h2>
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Role Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model)
+                    {
+                        <tr>
+                            <td>@role.Name</td>
+                            <td>
+                                <a class="btn btn-sm btn-info" href="@Url.Action("EditRole", "RolesManager", new { id = role.Id })">Edit</a>
+                                <form asp-action="DeleteRole" method="post" style="display:inline;">
+                                    <input type="hidden" name="id" value="@role.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

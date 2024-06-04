@@ -1,0 +1,56 @@
+﻿@model GaoQue.ViewModels.HomeViewModel
+
+@{
+    var item = Model.Contacts.FirstOrDefault();
+}
+
+@{
+    ViewData["Title"] = "Liên hệ";
+}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="row g-2">
+                    <div class="col-6 position-relative wow fadeIn" data-wow-delay="0.7s">
+                        <div class="about-experience bg-secondary rounded">
+                            <h1 class="display-1 mb-0">No1</h1>
+                            <small class="fs-5 fw-bold">Uy tín trên thị trường</small>
+                        </div>
+                    </div>
+                    <div class="col-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded" src="~/img/service-1.jpg">
+                    </div>
+                    <div class="col-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded" src="~/img/service-2.jpg">
+                    </div>
+                    <div class="col-6 wow fadeIn" data-wow-delay="0.1s">
+                        <img class="img-fluid rounded" src="~/img/service-3.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                <p class="section-title bg-white text-start text-primary pe-3">Thông tin về chúng tôi</p>
+                <h1 class="mb-4">@item.Name</h1>
+                <p class="mb-4">
+                    @item.Description
+                </p>
+                <div class="row g-5 pt-2 mb-5">
+                    <div class="col-sm-6">
+                        <img class="img-fluid mb-4" src="img/facebook.png" alt="" style="width: 70px; height: 70px;">
+                        <h5 class="mb-3">Liên hệ công việc</h5>
+                        <span>Chúng tôi rất lấy làm vinh dự khi được liên hệ với bạn</span>
+                    </div>
+                    <div class="col-sm-6">
+                        <img class="img-fluid mb-4" src="img/service.png" alt="" style="width: 70px; height: 70px;">
+                        <h5 class="mb-3">Đối tác</h5>
+                        <span>Chúng tôi rất lấy làm vinh dự khi được làm bạn đồng hành của bạn</span>
+                    </div>
+
+                    <a class="btn btn-secondary rounded-pill py-3 px-5" asp-controller="Contact" asp-action="Index">Xem ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

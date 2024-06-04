@@ -1,0 +1,187 @@
+﻿
+<style>
+    /* Nền và viền cho khung chat */
+    .chat-container {
+        background-color: #f1f8e9;
+        border: 1px solid #aed581;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    /* Tiêu đề của khung chat */
+    .chat-header {
+        background-color: #dcedc8;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Nội dung trong khung chat */
+    .chat-body {
+        padding: 10px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    /* Tin nhắn trong khung chat */
+    .chat-message {
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+        /* Tin nhắn của GPT */
+        .chat-message.gpt {
+            background-color: #dcedc8;
+            color: #33691e;
+        }
+
+        /* Tin nhắn của người dùng */
+        .chat-message.user {
+            background-color: #ffffff;
+            color: #424242;
+        }
+
+    /* Footer của khung chat */
+    .chat-footer {
+        background-color: #dcedc8;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+
+    /* Ô nhập câu hỏi */
+    #question {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+    }
+
+    /* Nút gửi */
+    #send {
+        margin-left: 10px;
+        padding: 10px 20px;
+        background-color: #558b2f;
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+</style>
+
+<div class="container">
+    <div class="card chat-container">
+        <div class="card-header chat-header">
+            <h4 class="text-dark">Chat với gạo quê</h4>
+        </div>
+        <div class="card-body chat-body" id="chatBody">
+            <!-- Initial greeting message -->
+            <div class="chat-message gpt">
+                Xin chào, chúng tôi có thể giúp gì cho bạn?
+            </div>
+        </div>
+        <div class="card-footer chat-footer">
+            <textarea class="form-control" id="question" placeholder="Nhập câu hỏi của bạn tại đây ..."></textarea>
+            <button id="send">Send</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    const apiKey = 'sk-proj-7QliocYCwhdQVBMyRCroT3BlbkFJBKWE9C22EcRBnY1gbjHa';  // Replace with your API key
+
+    $(document).ready(function () {
+    });
+
+    $('#send').click(function () {
+        const question = $('#question').val().trim();
+        if (!question) {
+            alert('Xin hãy nhập câu hỏi.');
+            return;
+        }
+
+        // Gọi API để lấy dữ liệu từ cơ sở dữ liệu
+        $.ajax({
+            url: '/api/GPTData', // Đường dẫn đến action trong controller để lấy dữ liệu từ cơ sở dữ liệu
+            type: 'GET',
+            success: function (response) {
+                const data = response; // Dữ liệu từ cơ sở dữ liệu
+                generateCompletion(data, question); // Gửi dữ liệu và câu hỏi đến GPT
+            },
+            error: function (xhr, status, error) {
+                console.error('Error:', error);
+            }
+        });
+    });
+
+    async function generateCompletion(data, question) {
+        // Tạo nội dung từ dữ liệu và câu hỏi
+        const content = `Data: ${JSON.stringify(data)}\n\nQuestion: ${question}`;
+
+        addChatMessage('user', question, 'question');  // Hiển thị câu hỏi từ người dùng trong khung chat
+
+        try {
+            const requestData = {
+                model: 'gpt-3.5-turbo',
+                messages: [{
+                    role: "user",
+                    content: content
+                }],
+                max_tokens: 400
+            };
+
+            const response = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Authorization': 'Bearer ' + apiKey,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (!response.ok) {
+                console.log('HTTP error', response.status);
+                const errorDetail = await response.text();
+                console.log('Error response body:', errorDetail);
+                addChatMessage('error', errorDetail, 'response');  // Hiển thị thông báo lỗi trong khung chat
+            } else {
+                const result = await response.json();
+                addChatMessage('gaoque', result.choices[0].message.content, 'response');  // Hiển thị câu trả lời từ GPT trong khung chat
+                console.log(result);
+            }
+        } catch (error) {
+            console.error('Fetch error:', error);
+            addChatMessage('error', 'Fetch error: ' + error.message, 'response');  // Hiển thị thông báo lỗi fetch trong khung chat
+        }
+
+        // Xóa nội dung trong ô nhập câu hỏi
+        $('#question').val('');
+    }
+
+    function addChatMessage(sender, message, messageType) {
+        const chatBody = $('#chatBody');
+        const messageElement = $('<div class="chat-message"></div>').text(message);
+        messageElement.addClass(sender);
+        messageElement.addClass(messageType);
+        chatBody.append(messageElement);
+        chatBody.scrollTop(chatBody.prop("scrollHeight")); // Cuộn xuống dòng cuối cùng trong khung chat
+
+    }
+
+
+</script>

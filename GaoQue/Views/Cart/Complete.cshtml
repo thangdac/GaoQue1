@@ -1,0 +1,49 @@
+﻿@model GaoQue.ViewModels.CartViewModel
+
+@{
+    ViewData["Title"] = "Hoàn thành đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Navbar Start -->
+@await Html.PartialAsync("_MenuPartial")
+<!-- Navbar End -->
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Thông tin nhận hàng</h4>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                <li class="mb-2">
+                    <strong>Tên người nhận:</strong> @Model.CurrentUser.FullName
+                </li>
+                <li class="mb-2">
+                    <strong>Mã đơn hàng:</strong> @Model.RecentOrder?.Id
+                </li>
+                <li class="mb-2">
+                    <strong>Ngày đặt hàng:</strong> @Model.RecentOrder?.OrderDate.ToString("dd/MM/yyyy")
+                </li>
+                <li class="mb-2">
+                    <strong>Địa chỉ giao hàng:</strong> @Model.RecentOrder?.ShippingAddress
+                </li>
+                <li class="mb-2">
+                    <strong>Ghi chú:</strong> @Model.RecentOrder?.Notes
+                </li>
+                <li class="mb-2">
+                    <strong>Hình thức thanh toán:</strong> @Model.RecentOrder?.PaymentMethod
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card mt-4 shadow-lg">
+        <div class="card-body text-center">
+            <h2 class="text-success">Cảm ơn bạn đã đặt hàng!</h2>
+            <p class="lead">Đơn hàng của bạn đã được xác nhận và đang được xử lý.</p>
+            <p>Mã đơn hàng của bạn là: <strong>@Model.RecentOrder?.Id</strong></p>
+            <p class="mb-0">Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi!</p>
+        </div>
+    </div>
+</div>

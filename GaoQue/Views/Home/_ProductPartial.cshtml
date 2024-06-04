@@ -1,0 +1,36 @@
+﻿@model GaoQue.ViewModels.HomeViewModel
+
+@{
+    int numOfQuantity = 1;
+}
+
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="section-title bg-white text-center text-primary px-3">Sản Phẩm</p>
+        </div>
+        <div class="row gx-6 overflow-hidden">
+            <div class="row">
+                @foreach (var item in Model.Products.Take(4))
+                {
+                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                        <div class="product-item">
+                            <div class="position-relative">
+                                <img class="img-fluid" src="~/img/@item.ImageUrl" alt="">
+                                <div class="product-overlay">
+                                    <a class="btn btn-square btn-secondary rounded-circle m-1" href=""><i class="bi bi-link"></i></a>
+                                    <a class="btn-AddToCart" data-id="@item.Id" href="#"> <i class="bi bi-cart btn btn-square btn-secondary rounded-circle m-1"></i> </a>
+                                </div>
+                            </div>
+                            <div class="text-center p-4">
+                                <a class="d-block h5" asp-controller="Product" asp-action="ProductDetail" asp-route-id="@item.Id">@item.Name</a>
+                                <span class="text-primary me-1"> @string.Format("{0:N0}", item.Price) VND</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <a class="btn btn-secondary rounded-pill py-3 px-5" id="showMoreBtn" style="margin-top: 10px;" asp-controller="Product" asp-action="Index">Xem thêm</a>
+        </div>
+    </div>
+</div>

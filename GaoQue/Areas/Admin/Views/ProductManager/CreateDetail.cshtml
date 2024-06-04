@@ -1,0 +1,56 @@
+﻿@model GaoQue.Models.ProductInformation
+
+@{
+    ViewData["Title"] = "Create Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ol class="breadcrumb" style="display: flex; justify-content: center;">
+                <li class="breadcrumb-item"><a href="#">Create Detail Product <span>@Model.ProductId</span></a></li>
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "ProductManager")">Product Manager</a></li>
+                <li class="breadcrumb-item active">Product</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+
+
+            <h4>Thông tin sản phẩm</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="CreateDetail" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="ProductId" value="@Model.ProductId" />
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Tên sản phẩm</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Description" class="control-label">Mô tả</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ImageUrl" class="control-label">URL hình ảnh</label>
+                            <input type="file" asp-for="ImageUrl" class="form-control" />
+                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-secondary">Tạo mới</button>
+                            <a class="btn btn-primary" asp-action="Index">Quay lại danh sách</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>

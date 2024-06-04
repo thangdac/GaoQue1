@@ -1,0 +1,57 @@
+﻿@model IEnumerable<GaoQue.Models.Product>
+
+@{
+    ViewData["Title"] = "Product";
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <p>
+                <a class="btn btn-primary" href="@Url.Action("Create", "ProductManager")">Tạo Mới</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Tên</th>
+                            <th>Giá</th>
+                            <th>Mô tả</th>
+                            <th>URL Hình ảnh</th>
+                            <th>Danh mục</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="clickable-row" onclick="window.location='@Url.Action("Display", new { id = item.Id })';">
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                                <td><img src="~/img/@item.ImageUrl" alt="Ảnh sản phẩm" style="width: 100px; height: auto;"></td>
+                                <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                <td>
+                                    <a class="btn btn-sm btn-primary" href="@Url.Action("Update", "ProductManager", new { id = item.Id })">Sửa</a>
+                                    <a class="btn btn-sm btn-info" href="@Url.Action("Display", "ProductManager", new { id = item.Id })">Chi Tiết</a>
+                                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete", "ProductManager", new { id = item.Id })">Xóa</a>
+                                    <a class="btn btn-sm btn-dark" href="@Url.Action("CreateDetail", "ProductManager", new { id = item.Id })">Thêm chi tiết sản phẩm</a>
+                                </td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

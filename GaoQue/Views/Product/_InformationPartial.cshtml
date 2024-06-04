@@ -1,0 +1,22 @@
+﻿@model GaoQue.ViewModels.ProductViewModel
+
+<div class="container mt-5">
+    <div class="row mt-5">
+        @foreach (var item in Model.Informations)
+        {
+            <hr />
+            <div class="card">
+                <div class="card-body">
+                    <p><h7>@item.Name</h7></p> <!-- Sử dụng thẻ strong để in đậm -->
+                    <div class="col-lg-12 text-center">
+                        <!-- Sử dụng lớp text-center để căn giữa nội dung -->
+                        <div class="mb-4">
+                            <p style="text-indent: 1.5em;">@item.Description</p> <!-- Áp dụng CSS để căn đầu dòng -->
+                            <img class="img-fluid mx-auto" src="~/img/@item.ImageUrl" alt="" style="width: 500px; height: auto;"> <!-- Sử dụng mx-auto để căn giữa hình ảnh -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
